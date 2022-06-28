@@ -1,0 +1,50 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="js/auth.js">
+
+<style>
+    th{ 
+        color:#fff;
+            }
+</style>
+
+
+<table class="table table-striped">
+    <tr  class="bg-info">
+        <th>Relation</th>
+        <th>Identite</th>
+    </tr>
+
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+<script>
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i].relation}</td>
+							<td>${data[i].identite}</td>
+							
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
+    var myjson;
+    $.getJSON("https://trankillprojets.fr/wal/wal.php?relations&identifiant="+ document.getElementById("identifiant").value, function(json){
+        myjson = json;
+
+        buildTable(myjson.relations)
+    });
+
+    
+
+
+
+</script>
